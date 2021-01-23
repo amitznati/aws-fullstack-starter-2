@@ -49,6 +49,30 @@ const CREATE_POST = gql`
     }
 `;
 ````
+
+#### Update PostList widget to show image
+```javascript
+function PostsList() {
+    const { loading, error, data, refetch } = useQuery(GET_POSTS);
+
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+
+    return (
+        <>
+            <button onClick={() => refetch()}>Refetch!</button>
+            {data.posts.map((post) => (
+                <div>
+                    <h3>{post.title}</h3>
+                    <div>{post.body}</div>
+                    <img src={post.imageUrl} alt={post.title} /> /* new field */
+                </div>
+            ))}
+        </>
+
+    );
+}
+```
 #### Update CreatePost widget
 ```javascript
 function CreatePost() {

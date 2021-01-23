@@ -47,6 +47,7 @@ function PostsList() {
                 <div>
                     <h3>{post.title}</h3>
                     <div>{post.body}</div>
+                    <img src={post.imageUrl} alt={post.title} />
                 </div>
             ))}
         </>

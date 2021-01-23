@@ -44,9 +44,10 @@ function PostsList() {
         <>
             <button onClick={() => refetch()}>Refetch!</button>
             {data.posts.map((post) => (
-                <div>
+                <div key={post.id}>
                     <h3>{post.title}</h3>
                     <div>{post.body}</div>
+                    <img src={post.imageUrl} alt={post.title} />
                 </div>
             ))}
         </>
