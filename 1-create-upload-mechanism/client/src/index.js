@@ -45,9 +45,12 @@ function PostsList() {
             <button onClick={() => refetch()}>Refetch!</button>
             {data.posts.map((post) => (
                 <div>
-                    <h3>{post.title}</h3>
-                    <div>{post.body}</div>
-                    <img src={post.imageUrl} alt={post.title} />
+                    <label>Title</label>
+                    <input type="text" required value={title} onChange={e => setTitle(e.target.value)} />
+                    <label>Body</label>
+                    <input type="text" required value={body} onChange={e => setBody(e.target.value)} />
+                    <input type="file" required onChange={onImageChange} />
+                    <button type="submit">Add Post</button>
                 </div>
             ))}
         </>

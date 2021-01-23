@@ -98,9 +98,9 @@ function CreatePost() {
                 <input type="text" required value={title} onChange={e => setTitle(e.target.value)} />
                 <label>Body</label>
                 <input type="text" required value={body} onChange={e => setBody(e.target.value)} />
-                <button type="submit">Add Post</button>
                 {/* new file input */}
                 <input type="file" required onChange={onImageChange} />
+                <button type="submit">Add Post</button>
             </form>
         </div>
     );
