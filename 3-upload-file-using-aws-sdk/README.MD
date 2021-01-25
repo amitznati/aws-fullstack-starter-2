@@ -70,12 +70,13 @@ const uploadFileS3 = require('./S3');
 ...
 Mutation: {
 	createPost: async (parent, {title, body, image}) => {
-                // I want the image get unique name
-                // so I first create and save the post with dummy image, 
-                // and then upload the image with the post id as the image name
+                // I want the image to get unique name
+                // so I first create and save the post with dummy image,
 		const post = new PostModel({title, body, imageUrl: 'https://source.unsplash.com/random'});
 		await post.save();
+		// and then upload the image with the post id as the image name
 		post.imageUrl = await uploadFileS3(image.file, post.id, 'posts');
+		// save the post again with the correct image url
 		await post.save();
 		console.log('post created: ', post);
 		return post;
