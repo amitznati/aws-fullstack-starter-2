@@ -3,17 +3,17 @@
 ## Client 
 [resource](https://www.apollographql.com/blog/graphql-file-uploads-with-react-hooks-typescript-amazon-s3-tutorial-ef39d21066a2/)
 
-#### Install [apollo-upload-client](https://github.com/jaydenseric/apollo-upload-client)
+Install [apollo-upload-client](https://github.com/jaydenseric/apollo-upload-client)
 ````
 npm install apollo-upload-client
 ````
 
-import createUploadLink
+Import createUploadLink
 
 ````javascript
 import { createUploadLink } from 'apollo-upload-client'
 ````
-#### Update ApolloClient uri to upload link
+Update ApolloClient uri to upload link
 ```javascript
 const client = new ApolloClient({
 	//from:
@@ -23,7 +23,7 @@ const client = new ApolloClient({
 	cache: new InMemoryCache()
 });
 ```
-#### update GET_POSTS query
+Update GET_POSTS query
 ````javascript
 const GET_POSTS = gql`
     query {
@@ -36,7 +36,7 @@ const GET_POSTS = gql`
     }
 `;
 ````
-#### update CREATE_POST mutation
+Update CREATE_POST mutation
 ````javascript
 const CREATE_POST = gql`
     mutation createPost($title: String!, $body: String!, $image: Upload! /* new value */ ) {
@@ -50,7 +50,7 @@ const CREATE_POST = gql`
 `;
 ````
 
-#### Update PostList widget to show image
+Update PostList widget to show image
 ```javascript
 function PostsList() {
     const { loading, error, data, refetch } = useQuery(GET_POSTS);
@@ -73,7 +73,7 @@ function PostsList() {
     );
 }
 ```
-#### Update CreatePost widget
+Update CreatePost widget
 ```javascript
 function CreatePost() {
     const [createPost] = useMutation(CREATE_POST);
@@ -110,7 +110,7 @@ function CreatePost() {
 
 ## Server
 
-#### Update PostModel
+Update PostModel
 ```javascript
 const PostModel = mongoose.model('Post', {
     title: String,
@@ -118,7 +118,7 @@ const PostModel = mongoose.model('Post', {
     imageUrl: String /* new field */
 });
 ```
-#### Update typeDefs, using **Upload** type for the input file
+Update typeDefs, using **Upload** type for the input file
 ```javascript
 const typeDefs = gql`
     type Post {
@@ -135,7 +135,7 @@ const typeDefs = gql`
     }
 `;
 ```
-#### Update resolvers
+Update resolvers
 ```javascript
 const resolvers = {
     // ...

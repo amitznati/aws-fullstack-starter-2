@@ -1,4 +1,4 @@
-# 2. Create AWS S3 Bucket
+# 2. Create cloud storage with Amazon S3 + Amazon CloudFront
 
 [resource](https://stackabuse.com/uploading-files-to-aws-s3-with-node-js/)
 
@@ -19,14 +19,40 @@ After that you can either copy the Access Key ID and Secret Access Key from this
 ![access-key](https://stackabuse.s3.amazonaws.com/media/uploading-files-to-s3-with-nodejs-3.png)
 
 
-#### Go to Amazon console and select S3 and click on _Create Bucket_
+Secure those keys and put them in the .env file
+````dotenv
+DB_URL=mongodb+srv://<user>:<password>@cluster0.ssmxxf.mongodb.net/<dbname>?retryWrites=true&w=majority
+#AWS Credentials
+ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+````
 
-![s3-create](https://d1ih00e1ckr8rk.cloudfront.net/resources/images/uploaded-images/600c8fc883216f18e2f27bc6.png)
+#### Create Amazon S3 + Amazon CloudFront
+
+[resource](https://aws.amazon.com/blogs/networking-and-content-delivery/amazon-s3-amazon-cloudfront-a-match-made-in-the-cloud/)
+
+Go to this [link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=cloudfrontfors3&templateURL=https://s3-eu-west-1.amazonaws.com/tomash-public/AWS/s3bucket_with_cloudfront.yml) to launch a new S3 Bucket and new CloudFront Distribution
+
+We'll keep the default options in all steps, maybe give the stack custom name and click _Create stack_
+![create-stack](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/cloudfront-review.png)
 
 
-Give the bucket a unique name and give the bucket access
+Monitor the stack status, once creation done clock on **_Outputs_** tab
+![outputs](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/stackoutput.png)
 
-![create-bucket](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/create-s3-bucket.png)
+Copy the value of _CfDistributionDomainName_ and _S3BucketName_ and save them in the .env file
 
+.env file
 
-
+````dotenv
+DB_URL=mongodb+srv://<user>:<password>@cluster0.ssmxxf.mongodb.net/<dbname>?retryWrites=true&w=majority
+#AWS Credentials
+ACCESS_KEY_ID=xxxxxxxxxxxxxxx
+SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#S3
+REGION=us-east-1
+AWS_BUCKET=cf-simple-s3-origin-awsblogcloudfront-947402827748
+AWS_BUCKET_DNS=d29dtcnf5dxmgz.cloudfront.net
+````
+* the REGION can be found in the app-bar near your user name
+  ![region](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/images/console-region-selector.png)

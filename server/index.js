@@ -41,8 +41,9 @@ const resolvers = {
     },
     Mutation: {
         createPost: async (parent, {title, body, image}) => {
-            const imageUrl = await uploadFileS3(image.file);
-            const post = new PostModel({title, body, imageUrl});
+            const post = new PostModel({title, body, imageUrl: 'https://source.unsplash.com/random'});
+            await post.save();
+            post.imageUrl = await uploadFileS3(image.file, post.id, 'posts');
             await post.save();
             console.log('post created: ', post);
             return post;

@@ -14,23 +14,25 @@ const s3 = new aws.S3({
 	}
 });
 
-const uploadFileS3 = async (file) => {
+const uploadFileS3 = async (file, fileName, filePath) => {
 	const {createReadStream, mimetype, encoding, filename} = await file;
-	const stream = createReadStream();
+	const newFilename = fileName ? `${fileName}.${filename.split('.').pop()}` : filename;
+	const dir = `uploads/${filePath}`;
+	let stream = createReadStream();
 	const {Location} = await s3.upload({
 		Body: stream,
-		Key: `upload/${filename}`,
+		Key: `${dir}/${newFilename}`,
 		ContentType: mimetype
 	}).promise();
-	console.log('File Location: ', Location);
-	return new Promise((resolve,reject) => {
+	return new Promise((resolve,reject)=>{
 		if (Location){
 			console.log({
 				success: true, message: "Uploaded", mimetype,filename,
 				location: Location, encoding
 			});
-			resolve(Location);
-		}else {
+			const fileUrl = Location.replace(`${process.env.AWS_BUCKET}.s3.${process.env.REGION}.amazonaws.com`, process.env.AWS_BUCKET_DNS)
+			resolve(fileUrl);
+		} else {
 			console.log('failed to save s3 file');
 			reject({
 				success: false, message: "Failed"
