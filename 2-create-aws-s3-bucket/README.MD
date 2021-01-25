@@ -37,7 +37,7 @@ We'll keep the default options in all steps, maybe give the stack custom name an
 ![create-stack](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/cloudfrontreview.png)
 
 
-Monitor the stack status, once creation done clock on **_Outputs_** tab
+Monitor the stack status, once creation done click on **_Outputs_** tab
 ![outputs](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/stackoutput.png)
 
 Copy the value of _CfDistributionDomainName_ and _S3BucketName_ and save them in the .env file
@@ -54,5 +54,9 @@ REGION=us-east-1
 AWS_BUCKET=cf-simple-s3-origin-awsblogcloudfront-947402827748
 AWS_BUCKET_DNS=d29dtcnf5dxmgz.cloudfront.net
 ````
+
+
 * the REGION can be found in the app-bar near your user name
+  
+
   ![region](https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/images/console-region-selector.png)
