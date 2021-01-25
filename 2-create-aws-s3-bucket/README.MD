@@ -34,7 +34,7 @@ SECRET_ACCESS_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Go to this [link](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=cloudfrontfors3&templateURL=https://s3-eu-west-1.amazonaws.com/tomash-public/AWS/s3bucket_with_cloudfront.yml) to launch a new S3 Bucket and new CloudFront Distribution
 
 We'll keep the default options in all steps, maybe give the stack custom name and click _Create stack_
-![create-stack](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/cloudfront-review.png)
+![create-stack](http://d1ih00e1ckr8rk.cloudfront.net/aws-starter/cloudfrontreview.png)
 
 
 Monitor the stack status, once creation done clock on **_Outputs_** tab
